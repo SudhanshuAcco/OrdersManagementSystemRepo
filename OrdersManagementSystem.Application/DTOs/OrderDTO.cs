@@ -1,4 +1,6 @@
-﻿namespace OrdersManagementSystem.Application.DTOs
+﻿using OrdersManagementSystem.Domain.Model;
+
+namespace OrdersManagementSystem.Application.DTOs
 {
     public class OrderDTO
     {
@@ -6,7 +8,7 @@
         public Guid CustomerID { get; set; }
         public IList<OrderItemDTO> OrderItems { get; set; } = new List<OrderItemDTO>();
         public DateTime OrderDate { get; set; }
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; }
     }
 
 

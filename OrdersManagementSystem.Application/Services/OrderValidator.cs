@@ -26,7 +26,8 @@ namespace OrdersManagementSystem.Application.Services
                     items.RuleFor(item => item.Quantity).GreaterThan(0).WithMessage("Quantity must be greater than zero.");
                     items.RuleFor(item => item.TotalPrice).GreaterThan(0).WithMessage("TotalPrice must be greater than zero.");
                 });
-
+            RuleFor(order => order.Status)
+            .IsInEnum().WithMessage("Status must be a valid value.");
         }
     }
 }

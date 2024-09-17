@@ -1,12 +1,19 @@
 ﻿namespace OrdersManagementSystem.Domain.Model
 {
+    public enum OrderStatus
+    {
+        Pending,
+        Completed,
+        Shipped,
+        Canceled
+    }
     public class Order
     {
         public Guid OrderID { get;  set; }
         public Guid CustomerID { get; set; }
         public IList<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
         public DateTime OrderDate { get; set; }
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; }
         public Order()
         {
             OrderID = Guid.NewGuid();

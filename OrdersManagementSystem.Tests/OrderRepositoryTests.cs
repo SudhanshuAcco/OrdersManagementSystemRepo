@@ -68,7 +68,7 @@ namespace OrdersManagementSystem.Tests
                 OrderID = order.OrderID,
                 CustomerID = Guid.NewGuid(), 
                 OrderDate = DateTime.UtcNow.AddDays(1),
-                Status = "Updated",
+                Status = OrderStatus.Pending,
                 OrderItems = order.OrderItems
             };
 

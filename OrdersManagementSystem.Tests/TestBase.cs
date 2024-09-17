@@ -35,7 +35,7 @@ namespace OrdersManagementSystem.Tests
                 OrderID = id,
                 CustomerID = Guid.NewGuid(),
                 OrderDate = DateTime.UtcNow,
-                Status = "New",
+                Status = OrderStatus.Pending,
                 OrderItems = new List<OrderItemDTO>
             {
                 new OrderItemDTO
@@ -55,7 +55,7 @@ namespace OrdersManagementSystem.Tests
                 OrderID = id,
                 CustomerID = Guid.NewGuid(),
                 OrderDate = DateTime.UtcNow,
-                Status = "New",
+                Status = OrderStatus.Pending,
                 OrderItems = new List<OrderItem>
             {
                 new OrderItem

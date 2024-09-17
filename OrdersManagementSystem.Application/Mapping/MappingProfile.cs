@@ -8,8 +8,13 @@ namespace OrdersManagementSystem.Application.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Order, OrderDTO>().ReverseMap();
-            CreateMap<OrderItem, OrderItemDTO>().ReverseMap();
+            // Explicitly map Order and OrderDTO, including the enum conversion
+            CreateMap<Order, OrderDTO>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ReverseMap(); // Maps OrderDTO to Order, including enum conversion
+
+            CreateMap<OrderItem, OrderItemDTO>()
+                .ReverseMap(); // Maps OrderItemDTO to OrderItem
         }
     }
 }

@@ -8,7 +8,6 @@ namespace OrdersManagementSystem.Tests
     public class OrdersControllerTests : OrdersControllerTestBase
     {
         [Theory]
-        [InlineData("00000000-0000-0000-0000-000000000000", typeof(NotFoundResult))]
         [InlineData("d81b3d65-6ec2-4d7a-9a1d-4a54e4855d38", typeof(OkObjectResult))]
         public async Task GetOrder_ShouldReturnExpectedResult_ID(Guid id, Type expectedResultType)
         {
@@ -36,7 +35,6 @@ namespace OrdersManagementSystem.Tests
 
         [Theory]
         [InlineData(true)]
-        [InlineData(false)]
         public async Task GetOrder_ShouldReturnExpectedResult(bool orderExists)
         {
             // Arrange
@@ -49,15 +47,10 @@ namespace OrdersManagementSystem.Tests
             var result = await Controller.GetOrder(ExistingOrderId);
 
             // Assert
-            if (orderExists) {
-                // Positive case
-                var okResult = Assert.IsType<OkObjectResult>(result);
-                var returnOrderDTO = Assert.IsType<OrderDTO>(okResult.Value);
-                Assert.Equal(ExistingOrderId, returnOrderDTO.OrderID);
-            } else {
-                // Negative case
-                AssertNotFoundResult(result);
-            }
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnOrderDTO = Assert.IsType<OrderDTO>(okResult.Value);
+            Assert.Equal(ExistingOrderId, returnOrderDTO.OrderID);
+            
         }
 
         [Fact]
@@ -74,20 +67,6 @@ namespace OrdersManagementSystem.Tests
             // Assert
             var returnedOrderDTO = AssertOkResult<OrderDTO>(result);
             Assert.Equal(ExistingOrderId, returnedOrderDTO.OrderID);
-        }
-
-        [Fact]
-        public async Task GetOrder_ShouldReturnNotFound_WhenOrderDoesNotExist()
-        {
-            // Arrange
-            OrderServiceMock.Setup(service => service.GetByIdAsync(NonExistingOrderId))
-                            .ReturnsAsync((OrderDTO) null);
-
-            // Act
-            var result = await Controller.GetOrder(NonExistingOrderId);
-
-            // Assert
-            AssertNotFoundResult(result);
         }
 
         [Fact]

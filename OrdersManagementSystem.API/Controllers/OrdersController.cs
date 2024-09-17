@@ -19,9 +19,6 @@ namespace OrdersManagementSystem.API.Controllers
         public async Task<IActionResult> GetOrder(Guid id)
         {
             var orderDTO = await _orderService.GetByIdAsync(id);
-            //if (orderDTO == null) {
-            //    return NotFound();
-            //}
             return Ok(orderDTO);
         }
 

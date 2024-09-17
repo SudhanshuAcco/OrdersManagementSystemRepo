@@ -38,8 +38,6 @@ namespace OrdersManagementSystem.Infrastructure.Middleware
             var response = new
             {
                 error = exception.Message,
-                // Optionally include more information about the exception
-                // stackTrace = exception.StackTrace // Only in development
             };
 
             return context.Response.WriteAsync(JsonSerializer.Serialize(response));

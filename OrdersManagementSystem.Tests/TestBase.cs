@@ -13,8 +13,6 @@ namespace OrdersManagementSystem.Tests
         protected readonly Mock<IOrderRepository> _orderRepositoryMock;
         protected readonly IMapper _mapper;
         protected readonly OrderService _orderService;
-
-        // Fixed GUIDs
         protected readonly Guid ExistingOrderId = Guid.Parse("d81b3d65-6ec2-4d7a-9a1d-4a54e4855d38");
         protected readonly Guid NonExistingOrderId = Guid.Parse("00000000-0000-0000-0000-000000000000");
         protected readonly Guid OrderIdMismatch = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff");

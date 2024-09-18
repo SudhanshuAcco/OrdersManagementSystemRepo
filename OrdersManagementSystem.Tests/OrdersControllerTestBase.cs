@@ -11,13 +11,11 @@ namespace OrdersManagementSystem.Tests
     public abstract class OrdersControllerTestBase : IDisposable
     {
         protected readonly Mock<IGenericService<OrderDTO, Order>> OrderServiceMock;
-        protected readonly OrdersController Controller;
-
-        // Fixed GUIDs
+        protected readonly OrdersController Controller;       
         protected readonly Guid ExistingOrderId = Guid.Parse("d81b3d65-6ec2-4d7a-9a1d-4a54e4855d38");
         protected readonly Guid NonExistingOrderId = Guid.Parse("00000000-0000-0000-0000-000000000000");
         protected readonly Guid OrderIdMismatch = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff");
-        protected readonly Guid AnotherFixedOrderId = Guid.Parse("aabbccdd-1234-5678-90ab-cdef12345678"); // New fixed GUID
+        protected readonly Guid AnotherFixedOrderId = Guid.Parse("aabbccdd-1234-5678-90ab-cdef12345678"); 
 
         protected OrdersControllerTestBase()
         {
@@ -25,7 +23,6 @@ namespace OrdersManagementSystem.Tests
             Controller = new OrdersController(OrderServiceMock.Object);
         }
 
-        // Helper methods for asserting results
         protected T AssertOkResult<T>(IActionResult result) where T : class
         {
             var okResult = Assert.IsType<OkObjectResult>(result);
